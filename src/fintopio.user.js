@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fintopio Bot [SmartBot]
 // @namespace    https://smartbot.black/
-// @version      1.0.0
+// @version      1.0.1
 // @description  Bot for playing fintopio in telegram
 // @author       Smartbot Team
 // @match        https://fintopio-tg.fintopio.com/*
@@ -13,13 +13,13 @@
 	while (true) {
 		while (
 			document.querySelector(
-				'img[src="https://cdn.fintopio.com/icons/hold/step1.png"]',
+				'img[src="https://cdn.fintopio.com/icons/hold/step1.webp"]',
 			)?.offsetParent
 		) {
 			await new Promise((res) => setTimeout(res, Math.random() * 1000));
 			document
 				.querySelector(
-					'img[src="https://cdn.fintopio.com/icons/hold/step1.png"]',
+					'img[src="https://cdn.fintopio.com/icons/hold/step1.webp"]',
 				)
 				?.click();
 		}
