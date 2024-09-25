@@ -13,12 +13,18 @@
 	let isStartFarming = false;
 
 	while (true) {
+		document.querySelector('a[href="/hold"]')?.click();
+
+		await new Promise((res) =>
+			setTimeout(res, Math.random() * 10 * 1e3 + 10 * 1e3),
+		);
+
 		while (
 			document.querySelector(
 				'img[src="https://cdn.fintopio.com/icons/hold/step1.png"]',
 			)?.offsetParent
 		) {
-			await new Promise((res) => setTimeout(res, Math.random() * 1000));
+			await new Promise((res) => setTimeout(res, Math.random() * 1e3));
 			document
 				.querySelector(
 					'img[src="https://cdn.fintopio.com/icons/hold/step1.png"]',
@@ -26,28 +32,29 @@
 				?.click();
 		}
 
-		const elemets = [
+		const getElemets = () => [
 			document.querySelector('img[alt="diamond"]'),
 			...document.querySelectorAll(".app-loader-el"),
 		];
 
 		while (
-			elemets.length > 2 &&
-			elemets.slice(0, 4).some((el) => el.offsetParent)
+			getElemets().length > 2 &&
+			getElemets()
+				.slice(0, 5)
+				.some((el) => el?.offsetParent)
 		) {
 			isStartFarming = true;
-			for (const el of [...document.querySelectorAll(".app-loader-el")].slice(
-				0,
-				4,
-			)) {
-				if (el.offsetParent) {
+			for (const el of getElemets().slice(0, 5)) {
+				if (el?.offsetParent) {
 					el.click();
 				}
 			}
-			await new Promise((res) => setTimeout(res, Math.random() * 1000));
+			await new Promise((res) => setTimeout(res, Math.random() * 1e3));
 		}
 
-		await new Promise((res) => setTimeout(res, Math.random() * 10 * 1000));
+		await new Promise((res) =>
+			setTimeout(res, Math.random() * 10 * 1e3 + 20 * 1e3),
+		);
 
 		if (isStartFarming) {
 			isStartFarming = false;
