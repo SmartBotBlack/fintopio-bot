@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fintopio Bot [SmartBot]
 // @namespace    https://smartbot.black/
-// @version      1.0.0
+// @version      1.1.0
 // @description  Bot for playing fintopio in telegram
 // @author       Smartbot Team
 // @match        https://fintopio-tg.fintopio.com/*
@@ -10,6 +10,8 @@
 // ==/UserScript==
 
 (async () => {
+	let isStartFarming = false;
+
 	while (true) {
 		while (
 			document.querySelector(
@@ -24,12 +26,16 @@
 				?.click();
 		}
 
+		const elemets = [
+			document.querySelector('img[alt="diamond"]'),
+			...document.querySelectorAll(".app-loader-el"),
+		];
+
 		while (
-			[...document.querySelectorAll(".app-loader-el")].length > 2 &&
-			[...document.querySelectorAll(".app-loader-el")]
-				.slice(0, 4)
-				.some((el) => el.offsetParent)
+			elemets.length > 2 &&
+			elemets.slice(0, 4).some((el) => el.offsetParent)
 		) {
+			isStartFarming = true;
 			for (const el of [...document.querySelectorAll(".app-loader-el")].slice(
 				0,
 				4,
@@ -40,6 +46,12 @@
 			}
 			await new Promise((res) => setTimeout(res, Math.random() * 1000));
 		}
+
 		await new Promise((res) => setTimeout(res, Math.random() * 10 * 1000));
+
+		if (isStartFarming) {
+			isStartFarming = false;
+			window.location.replace("/");
+		}
 	}
 })();
