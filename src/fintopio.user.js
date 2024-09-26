@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fintopio Bot [SmartBot]
 // @namespace    https://smartbot.black/
-// @version      1.1.0
+// @version      1.1.1
 // @description  Bot for playing fintopio in telegram
 // @author       Smartbot Team
 // @match        https://fintopio-tg.fintopio.com/*
@@ -10,6 +10,8 @@
 // ==/UserScript==
 
 (async () => {
+	await new Promise((res) => setTimeout(res, 30 * 1e3));
+
 	let isStartFarming = false;
 
 	while (true) {
